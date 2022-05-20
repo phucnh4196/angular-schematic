@@ -29,7 +29,7 @@
       "x-prompt": "What name would you like to use for the directive?"
     },
     "shared": {
-      "description": "Specifies whether to create shared component.",
+      "description": "Specifies whether to create shared directive.",
       "type": "boolean",
       "default": false,
       "visible": false

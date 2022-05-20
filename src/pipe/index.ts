@@ -14,7 +14,7 @@ export default function (options: any): Rule {
 
     const modulePath = await getScamModulePath(tree, options)
     const moduleName = options.name
-    const directivePath = path.posix.join(
+    const pipePath = path.posix.join(
       modulePath,
       options.name
     )
@@ -31,7 +31,7 @@ export default function (options: any): Rule {
       }),
       externalSchematic('@schematics/angular', 'pipe', {
         ...opts,
-        path: directivePath,
+        path: pipePath,
         export: true
       }),
     ])

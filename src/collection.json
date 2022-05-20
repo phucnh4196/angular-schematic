@@ -25,6 +25,21 @@
       "description": "Creates a new, generic pipe definition in the given or default project.",
       "factory": "./pipe/",
       "schema": "./pipe/schema.json"
+    },
+    "service": {
+      "description": "Creates a new, generic service definition in the given or default project.",
+      "factory": "./service/",
+      "schema": "./service/schema.json"
+    },
+    "class": {
+      "description": "Creates a new, generic class definition in the given or default project.",
+      "factory": "./class/",
+      "schema": "./class/schema.json"
+    },
+    "interface": {
+      "description": "Creates a new, generic class definition in the given or default project.",
+      "factory": "./interface/",
+      "schema": "./interface/schema.json"
     }
   }
 }
