@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "VtsSchematicsAngularDirective",
+  "title": "VTS Kit Angular Schematic",
+  "type": "object",
+  "description": "Creates a new, generic directive definition in the given or default project.",
+  "additionalProperties": false,
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path at which to create the directive file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
+      "x-prompt": "Where to create new directive, relative to 'shared' or 'libs' folder (default set to create 'libs' directive, use option --shared to create shared directive)?"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the new directive.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the directive?"
+    },
+    "shared": {
+      "description": "Specifies whether to create shared component.",
+      "type": "boolean",
+      "default": false,
+      "visible": false
+    },
+    "prefix": {
+      "type": "string",
+      "description": "A prefix to apply to generated selectors.",
+      "alias": "p",
+      "oneOf": [
+        {
+          "maxLength": 0
+        },
+        {
+          "minLength": 1,
+          "format": "html-selector"
+        }
+      ]
+    },
+    "skipTests": {
+      "type": "boolean",
+      "description": "Do not create \"spec.ts\" test files for the new class.",
+      "default": false,
+      "x-user-analytics": 12
+    },
+    "skipImport": {
+      "type": "boolean",
+      "description": "Do not import this directive into the owning NgModule.",
+      "default": false,
+      "x-user-analytics": 18
+    },
+    "selector": {
+      "type": "string",
+      "format": "html-selector",
+      "description": "The HTML selector to use for this directive."
+    },
+    "flat": {
+      "type": "boolean",
+      "description": "When true (the default), creates the new files at the top level of the current project.",
+      "default": true
+    },
+    "module": {
+      "type": "string",
+      "description": "The declaring NgModule.",
+      "alias": "m"
+    }
+  },
+  "required": ["name"]
+}
