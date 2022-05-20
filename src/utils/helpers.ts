@@ -1,8 +1,6 @@
 import { Tree } from '@angular-devkit/schematics'
 import { createDefaultPath } from '@schematics/angular/utility/workspace'
 import * as nodePath from 'path'
-import * as fs from 'fs'
-import { buildRelativePath } from 'schematics-utilities'
 import { normalize } from '@angular-devkit/core'
 
 const CONSTANTS = require('../declare.json')

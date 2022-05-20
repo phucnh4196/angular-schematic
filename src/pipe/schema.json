@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "VtsSchematicsAngularPipe",
+  "title": "VTS Kit Angular Schematic",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Creates a new, generic pipe definition in the given or default project.",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path at which to create the pipe file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
+      "x-prompt": "Where to create new pipe, relative to 'shared' or 'libs' folder (default set to create 'libs' pipe, use option --shared to create shared pipe)?"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the new pipe.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the pipe?"
+    },
+    "shared": {
+      "description": "Specifies whether to create shared component.",
+      "type": "boolean",
+      "default": false,
+      "visible": false
+    },
+    "flat": {
+      "type": "boolean",
+      "default": true,
+      "description": "When true (the default) creates files at the top level of the project."
+    },
+    "skipTests": {
+      "type": "boolean",
+      "description": "Do not create \"spec.ts\" test files for the new pipe.",
+      "default": false,
+      "x-user-analytics": 12
+    },
+    "skipImport": {
+      "type": "boolean",
+      "default": false,
+      "description": "Do not import this pipe into the owning NgModule.",
+      "x-user-analytics": 18
+    },
+    "module": {
+      "type": "string",
+      "description": "The declaring NgModule.",
+      "alias": "m"
+    }
+  },
+  "required": ["name"]
+}

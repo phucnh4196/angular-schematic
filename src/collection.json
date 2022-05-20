@@ -20,6 +20,11 @@
       "description": "Creates a new, generic directive definition in the given or default project.",
       "factory": "./directive/",
       "schema": "./directive/schema.json"
+    },
+    "pipe": {
+      "description": "Creates a new, generic pipe definition in the given or default project.",
+      "factory": "./pipe/",
+      "schema": "./pipe/schema.json"
     }
   }
 }
