@@ -16,17 +16,17 @@
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the pipe file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
-      "x-prompt": "Where to create new pipe, relative to 'shared' or 'libs' folder (default set to create 'libs' pipe, use option --shared to create shared pipe)?"
+      "description": "The path at which to create the service file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
+      "x-prompt": "Where to create new service, relative to 'shared' or 'libs' folder (default set to create 'libs' service, use option --shared to create shared service)?"
     },
     "name": {
       "type": "string",
-      "description": "The name of the new pipe.",
+      "description": "The name of the new service.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the pipe?"
+      "x-prompt": "What name would you like to use for the service?"
     },
     "shared": {
       "description": "Specifies whether to create shared service.",

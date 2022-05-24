@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import { chain, externalSchematic, Rule, schematic, SchematicContext } from "@angular-devkit/schematics";
 import { Tree } from "@angular-devkit/schematics/src/tree/interface";
 import { compact, omit } from "lodash";
@@ -21,7 +22,8 @@ export default function (options: any): Rule {
       ? null 
       : schematic('module', {
         path: modulePath,
-        name: moduleName
+        name: moduleName,
+        customName: `${strings.classify(moduleName)}ComponentModule`
       }),
       externalSchematic('@schematics/angular', 'component', {
         ...opts,

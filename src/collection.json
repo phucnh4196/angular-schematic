@@ -40,6 +40,11 @@
       "description": "Creates a new, generic class definition in the given or default project.",
       "factory": "./interface/",
       "schema": "./interface/schema.json"
+    },
+    "validator": {
+      "description": "Creates a new sync or async validator in the given or default project.",
+      "factory": "./validator/",
+      "schema": "./validator/schema.json"
     }
   }
 }

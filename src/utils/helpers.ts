@@ -2,8 +2,7 @@ import { Tree } from '@angular-devkit/schematics'
 import { createDefaultPath } from '@schematics/angular/utility/workspace'
 import * as nodePath from 'path'
 import { normalize } from '@angular-devkit/core'
-
-const CONSTANTS = require('../declare.json')
+import CONSTANTS from '../declare'
 
 export function getLibDir(path: string) {
   return nodePath.posix.join(CONSTANTS.LIB_DIR, path)
@@ -26,7 +25,7 @@ export async function getScamModulePath(tree: Tree, options: any) {
   return modulePath
 }
 
-export function findModule(tree: Tree, modulePath: string, moduleName: string, moduleExt = CONSTANTS.MODULE_EXT): (boolean | string)[] {
+export function findModule(tree: Tree, modulePath: string, moduleName: string, moduleExt = CONSTANTS.MODULE_EXT): [boolean, string] {
   const fileName = `${moduleName}${moduleExt}`
   const fullPath = normalize(nodePath.posix.join(modulePath, moduleName, fileName))
   const exist = tree.exists(fullPath)

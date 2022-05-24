@@ -3,6 +3,7 @@ import { Tree } from "@angular-devkit/schematics/src/tree/interface";
 import { compact, omit } from "lodash";
 import { findModule, getScamModulePath } from "../utils/helpers";
 import * as path from 'path';
+import { strings } from "@angular-devkit/core";
 
 
 
@@ -27,7 +28,9 @@ export default function (options: any): Rule {
       ? null 
       : schematic('module', {
         path: modulePath,
-        name: moduleName
+        name: moduleName,
+        commonModule: false,
+        customName: `${strings.classify(moduleName)}PipeModule`
       }),
       externalSchematic('@schematics/angular', 'pipe', {
         ...opts,
