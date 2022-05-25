@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "VtsSchematicsAngularEnum",
+  "title": "VTS Kit Angular Schematic",
+  "type": "object",
+  "description": "Creates a new, generic enum definition in the given or default project.",
+  "additionalProperties": false,
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "shared": {
+      "description": "Specifies whether to create enum in shared directory (true / false).",
+      "type": "boolean",
+      "default": false,
+      "x-prompt": {
+        "message": "Do you want to create enum in 'shared' directory? (--shared)",
+        "type": "list",
+        "items": [
+          { "value": true, "label": "Yes"},
+          { "value": false, "label": "No"}
+        ]
+      }
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path at which to create the enum, relative to 'shared' or 'libs' folder.",
+      "x-prompt": "Where to create new enum, relative to 'shared' or 'libs' folder? (--path)"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the new enum.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the enum? (--name)"
+    },
+    "type": {
+      "type": "string",
+      "description": "Adds a developer-defined type to the filename, in the format \"name.type.ts\"."
+    }
+  },
+  "required": ["shared", "path", "name"]
+}

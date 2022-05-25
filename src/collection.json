@@ -41,6 +41,11 @@
       "factory": "./interface/",
       "schema": "./interface/schema.json"
     },
+    "enum": {
+      "description": "Creates a new, generic enum definition in the given or default project.",
+      "factory": "./enum/",
+      "schema": "./enum/schema.json"
+    },
     "validator": {
       "description": "Creates a new sync or async validator in the given or default project.",
       "factory": "./validator/",
