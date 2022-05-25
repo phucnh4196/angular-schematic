@@ -17,7 +17,7 @@ export default function (options: any): Rule {
     const rules = compact([
       externalSchematic('@schematics/angular', 'enum', {
         ...opts,
-        path: 'src/app/shared/enum'
+        path: enumPath
       }),
     ])
 
