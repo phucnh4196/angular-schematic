@@ -50,6 +50,11 @@
       "description": "Creates a new sync or async validator in the given or default project.",
       "factory": "./validator/",
       "schema": "./validator/schema.json"
+    },
+    "guard": {
+      "description": "Creates a new, generic route guard definition in the given or default project.",
+      "factory": "./guard/",
+      "schema": "./guard/schema.json"
     }
   }
 }
