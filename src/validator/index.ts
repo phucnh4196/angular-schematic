@@ -25,9 +25,10 @@ export default function (options: any): Rule {
     ]);
 
     
-    const modulePath = validatorPath
+    const modulePath = options.path
+    const fullModulePath = validatorPath
     const moduleName = options.name
-    const [moduleExist, mp] = findModule(tree, modulePath, moduleName)
+    const [moduleExist, moduleFile] = findModule(tree, fullModulePath, moduleName)
 
     const rules = compact([
       mergeWith(templateSource),
@@ -36,27 +37,27 @@ export default function (options: any): Rule {
         path: modulePath,
         name: moduleName,
         commonModule: false,
-        customName: `${strings.classify(moduleName)}ValidatorModule`
+        exportClassName: `${strings.classify(moduleName)}ValidatorModule`,
+        shared: options.shared
       })
       : null,
       options.form === 'template' 
       ? (tree: Tree) => {
-        const fullModulePath = mp as string
-        const text = tree.read(fullModulePath);
+        const text = tree.read(moduleFile);
         if (text === null) {
-          throw new SchematicsException(`File ${fullModulePath} does not exist.`);
+          throw new SchematicsException(`File ${moduleFile} does not exist.`);
         }
         const sourceText = text.toString('utf-8');
-        const source = ts.createSourceFile(fullModulePath, sourceText, ts.ScriptTarget.Latest, true);
-        const directivePath = path.posix.join(modulePath, options.name, strings.dasherize(options.name) + CONSTANTS.DIRECTIVE_EXT.slice(0, -3))
-        const relativePath = buildRelativePath(fullModulePath, directivePath);
+        const source = ts.createSourceFile(moduleFile, sourceText, ts.ScriptTarget.Latest, true);
+        const directivePath = path.posix.join(fullModulePath, options.name, strings.dasherize(options.name) + CONSTANTS.DIRECTIVE_EXT.slice(0, -3))
+        const relativePath = buildRelativePath(moduleFile, directivePath);
         const declarationChanges = addDeclarationToModule(
           source,
-          fullModulePath,
+          moduleFile,
           strings.classify(`${options.name}ValidatorDirective`),
           relativePath,
         )
-        const declareRecorder = tree.beginUpdate(fullModulePath);
+        const declareRecorder = tree.beginUpdate(moduleFile);
         for (const change of declarationChanges) {
           if (change instanceof InsertChange) {
             declareRecorder.insertLeft(change.pos, change.toAdd);
@@ -64,12 +65,12 @@ export default function (options: any): Rule {
         }
         tree.commitUpdate(declareRecorder);
 
-        const declaredText = tree.read(fullModulePath) || '';
-        const declaredSource = ts.createSourceFile(fullModulePath, declaredText.toString('utf-8'), ts.ScriptTarget.Latest, true);
-        const exportRecorder = tree.beginUpdate(fullModulePath);
+        const declaredText = tree.read(moduleFile) || '';
+        const declaredSource = ts.createSourceFile(moduleFile, declaredText.toString('utf-8'), ts.ScriptTarget.Latest, true);
+        const exportRecorder = tree.beginUpdate(moduleFile);
         const exportChanges = addExportToModule(
           declaredSource,
-          fullModulePath,
+          moduleFile,
           strings.classify(`${options.name}ValidatorDirective`),
           relativePath,
         );

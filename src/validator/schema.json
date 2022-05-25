@@ -14,22 +14,23 @@
       }
     },
     "shared": {
-      "description": "Specifies whether to create item in shared directory.",
+      "description": "Specifies whether to create validator in shared directory (true / false).",
       "type": "boolean",
+      "default": false,
       "x-prompt": {
-        "message": "which directory in which validator be created?",
+        "message": "Do you want to create validator in 'shared' directory? (--shared)",
         "type": "list",
         "items": [
-          { "value": true, "label": "shared"},
-          { "value": false, "label": "libs"}
+          { "value": true, "label": "Yes"},
+          { "value": false, "label": "No"}
         ]
       }
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the validator file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
-      "x-prompt": "Where to create new validator, relative to 'shared' or 'libs' folder (default set to create 'libs' validator, use option --shared to create shared validator)? (--path)"
+      "description": "The path at which to create the validator, relative to 'shared' or 'libs' folder.",
+      "x-prompt": "Where to create new validator, relative to 'shared' or 'libs' folder? (--path)"
     },
     "name": {
       "type": "string",
@@ -67,5 +68,5 @@
       }
     }
   },
-  "required": ["name", "type", "form"]
+  "required": ["shared", "path", "name", "type", "form"]
 }

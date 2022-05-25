@@ -13,15 +13,16 @@ export default function (options: any): Rule {
       options.shared = false
     }
 
-    const modulePath = await getScamModulePath(tree, options)
+    const modulePath = options.path
+    const fullModulePath = await getScamModulePath(tree, options)
     const moduleName = options.name
     const pipePath = path.posix.join(
-      modulePath,
+      fullModulePath,
       options.name
     )
     const opts = omit(options, ['shared'])
 
-    const [moduleExist, _] = findModule(tree, modulePath, moduleName)
+    const [moduleExist, _] = findModule(tree, fullModulePath, moduleName)
 
     const rules = compact([
       moduleExist 
@@ -30,7 +31,8 @@ export default function (options: any): Rule {
         path: modulePath,
         name: moduleName,
         commonModule: false,
-        customName: `${strings.classify(moduleName)}PipeModule`
+        exportClassName: `${strings.classify(moduleName)}PipeModule`,
+        shared: options.shared
       }),
       externalSchematic('@schematics/angular', 'pipe', {
         ...opts,

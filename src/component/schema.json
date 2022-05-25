@@ -13,26 +13,33 @@
         "$source": "projectName"
       }
     },
+    "shared": {
+      "description": "Specifies whether to create component in shared directory (true / false).",
+      "type": "boolean",
+      "default": false,
+      "x-prompt": {
+        "message": "Do you want to create component in 'shared' directory? (--shared)",
+        "type": "list",
+        "items": [
+          { "value": true, "label": "Yes"},
+          { "value": false, "label": "No"}
+        ]
+      }
+    },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the component file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
-      "x-prompt": "Where to create new component, relative to 'shared' or 'libs' folder (default set to create 'libs' component, use option --shared to create shared component)?"
+      "description": "The path at which to create the component, relative to 'shared' or 'libs' folder.",
+      "x-prompt": "Where to create new component, relative to 'shared' or 'libs' folder? (--path)"
     },
     "name": {
       "type": "string",
-      "description": "The name of the component.",
+      "description": "The name of the new component.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the component?"
-    },
-    "shared": {
-      "description": "Specifies whether to create shared component.",
-      "type": "boolean",
-      "default": false,
-      "visible": false
+      "x-prompt": "What name would you like to use for the component? (--name)"
     },
     "displayBlock": {
       "description": "Specifies if the style will contain `:host { display: block; }`.",
@@ -129,5 +136,5 @@
       "description": "Specifies if the component should have a selector or not."
     }
   },
-  "required": ["name"]
+  "required": ["shared", "path", "name"]
 }

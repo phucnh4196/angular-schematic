@@ -13,11 +13,24 @@
         "$source": "projectName"
       }
     },
+    "shared": {
+      "description": "Specifies whether to create class in shared directory (true / false).",
+      "type": "boolean",
+      "default": false,
+      "x-prompt": {
+        "message": "Do you want to create class in 'shared' directory? (--shared)",
+        "type": "list",
+        "items": [
+          { "value": true, "label": "Yes"},
+          { "value": false, "label": "No"}
+        ]
+      }
+    },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the class file, relative to 'shared' or 'libs' folder. Default mode is set to `libs`",
-      "x-prompt": "Where to create new class, relative to 'shared' or 'libs' folder (default set to create 'libs' class, use option --shared to create shared class)?"
+      "description": "The path at which to create the class, relative to 'shared' or 'libs' folder.",
+      "x-prompt": "Where to create new class, relative to 'shared' or 'libs' folder? (--path)"
     },
     "name": {
       "type": "string",
@@ -26,13 +39,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the class?"
-    },
-    "shared": {
-      "description": "Specifies whether to create shared service.",
-      "type": "boolean",
-      "default": false,
-      "visible": false
+      "x-prompt": "What name would you like to use for the class? (--name)"
     },
     "skipTests": {
       "type": "boolean",
@@ -45,5 +52,5 @@
       "description": "Adds a developer-defined type to the filename, in the format \"name.type.ts\"."
     }
   },
-  "required": ["name"]
+  "required": ["shared", "path", "name"]
 }
