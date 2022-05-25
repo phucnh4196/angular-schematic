@@ -60,6 +60,11 @@
       "description": "Creates a new, generic route interceptor definition in the given or default project.",
       "factory": "./interceptor/",
       "schema": "./interceptor/schema.json"
+    },
+    "resolver": {
+      "description": "Creates a new, generic resolver definition in the given or default project.",
+      "factory": "./resolver/",
+      "schema": "./resolver/schema.json"
     }
   }
 }
