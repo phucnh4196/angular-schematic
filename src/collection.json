@@ -55,6 +55,11 @@
       "description": "Creates a new, generic route guard definition in the given or default project.",
       "factory": "./guard/",
       "schema": "./guard/schema.json"
+    },
+    "interceptor": {
+      "description": "Creates a new, generic route interceptor definition in the given or default project.",
+      "factory": "./interceptor/",
+      "schema": "./interceptor/schema.json"
     }
   }
 }
