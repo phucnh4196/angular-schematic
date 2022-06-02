@@ -22,6 +22,7 @@ export default function (options: any): Rule {
       moduleExist 
       ? null 
       : schematic('module', {
+        project: options.project,
         path: modulePath,
         name: moduleName,
         exportClassName: `${strings.classify(moduleName)}ComponentModule`,

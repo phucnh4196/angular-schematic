@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "VtsSchematicsAngularComponent",
+  "$id": "VtsSchematicsAngularFeatureGroup",
   "title": "VTS Kit Angular Schematic",
   "type": "object",
-  "description": "Creates a new, generic component definition in the given or default project.",
+  "description": "Creates a new feature group in the given or default project.",
   "additionalProperties": false,
   "properties": {
     "project": {
@@ -13,25 +13,19 @@
         "$source": "projectName"
       }
     },
-    "shared": {
-      "description": "Specifies whether to create component in shared directory (true / false).",
-      "type": "boolean",
-      "default": false
-    },
-    "path": {
-      "type": "string",
-      "format": "path",
-      "description": "The path at which to create the component, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder).",
-      "x-prompt": "Where to create new component, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder)? (--path)"
-    },
     "name": {
       "type": "string",
-      "description": "The name of the new component.",
+      "description": "The name of the new feature group.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the component? (--name)"
+      "x-prompt": "What name would you like to use for the feature group? (--name)"
+    },
+    "feature": {
+      "type": "string",
+      "description": "The name of first-created feature to be lazy-loaded.",
+      "x-prompt": "What name would you like to use for first-created feature? (--feature)"
     },
     "displayBlock": {
       "description": "Specifies if the style will contain `:host { display: block; }`.",
@@ -112,11 +106,6 @@
       "default": false,
       "x-user-analytics": 12
     },
-    "flat": {
-      "type": "boolean",
-      "description": "Create the new files at the top level of the current project.",
-      "default": false
-    },
     "selector": {
       "type": "string",
       "format": "html-selector",
@@ -126,7 +115,13 @@
       "type": "boolean",
       "default": false,
       "description": "Specifies if the component should have a selector or not."
+    },
+    "routing": {
+      "type": "boolean",
+      "description": "Generate routing for feature.",
+      "x-user-analytics": 17,
+      "default": true
     }
   },
-  "required": ["path", "name"]
+  "required": ["name", "feature"]
 }

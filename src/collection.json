@@ -70,6 +70,11 @@
       "description": "Creates a new, generic resolver definition in the given or default project.",
       "factory": "./resolver/",
       "schema": "./resolver/schema.json"
+    },
+    "feature-group": {
+      "description": "Creates a new feature group in the given or default project.",
+      "factory": "./feature-group/",
+      "schema": "./feature-group/schema.json"
     }
   }
 }

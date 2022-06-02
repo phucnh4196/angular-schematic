@@ -16,21 +16,13 @@
     "shared": {
       "description": "Specifies whether to create directive in shared directory (true / false).",
       "type": "boolean",
-      "default": false,
-      "x-prompt": {
-        "message": "Do you want to create directive in 'shared' directory? (--shared)",
-        "type": "list",
-        "items": [
-          { "value": true, "label": "Yes"},
-          { "value": false, "label": "No"}
-        ]
-      }
+      "default": false
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the directive, relative to 'shared' or 'libs' folder.",
-      "x-prompt": "Where to create new directive, relative to 'shared' or 'libs' folder? (--path)"
+      "description": "The path at which to create the directive, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder).",
+      "x-prompt": "Where to create new directive, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder)? (--path)"
     },
     "name": {
       "type": "string",
@@ -78,5 +70,5 @@
       "default": true
     }
   },
-  "required": ["shared", "path", "name"]
+  "required": ["path", "name"]
 }

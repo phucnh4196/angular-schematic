@@ -1,5 +1,5 @@
 import { strings } from "@angular-devkit/core";
-import { apply, applyTemplates, chain, externalSchematic, filter, mergeWith, move, noop, Rule, schematic, SchematicContext, SchematicsException, url } from "@angular-devkit/schematics";
+import { apply, applyTemplates, chain, filter, mergeWith, move, noop, Rule, schematic, SchematicContext, SchematicsException, url } from "@angular-devkit/schematics";
 import { Tree } from "@angular-devkit/schematics/src/tree/interface";
 import { compact } from "lodash";
 import { findModule, getScamModulePath } from "../utils/helpers";
@@ -34,6 +34,7 @@ export default function (options: any): Rule {
       mergeWith(templateSource),
       options.form === 'template' && !moduleExist 
       ? schematic('module', {
+        project: options.project,
         path: modulePath,
         name: moduleName,
         commonModule: false,

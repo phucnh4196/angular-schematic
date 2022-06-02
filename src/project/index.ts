@@ -1,18 +1,10 @@
+import { strings } from "@angular-devkit/core";
 import { apply, applyTemplates, chain, externalSchematic, move, Rule, SchematicContext, url, MergeStrategy } from "@angular-devkit/schematics";
 import { Tree } from "@angular-devkit/schematics/src/tree/interface";
 import { getWorkspace } from "@schematics/angular/utility/workspace";
-import _, { compact, mergeWith, omit } from "lodash";
+import _, { compact } from "lodash";
+import CONSTANTS from '../declare';
 import * as path from 'path';
-import * as fs from 'fs-extra';
-import chalk from 'chalk';
-import { Observable } from "rxjs";
-
-export function copyExternalProjectTree(srcDir: string) {
-  if (fs.existsSync(srcDir)) {
-    fs.copySync(path.join(__dirname, 'tree'), srcDir)
-    console.log(chalk.cyan('Generated project tree'))
-  }
-}
 
 export default function (options: any): Rule {
   return async (tree: Tree, _context: SchematicContext) => {
@@ -31,22 +23,15 @@ export default function (options: any): Rule {
       }),
       async (_tree: Tree, context: SchematicContext) => {
         const source = apply(url('./tree'), [
-          applyTemplates({}),
+          applyTemplates({
+            ...strings,
+            ...CONSTANTS
+          }),
           move(srcDir)
         ])(context) as any
         const fileToCreate = await source.toPromise()
         tree.merge(fileToCreate)
       },
-
-
-      // mergeWith(apply(url('./tree'), [
-      //   move(srcDir)
-      // ])),
-
-      // (_tree: Tree, _context: SchematicContext) => {
-      //   // Generate tree
-      //   // copyExternalProjectTree(srcDir)
-      // }
     ])
 
     return chain(rules);
