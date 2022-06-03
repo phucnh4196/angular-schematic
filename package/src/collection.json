@@ -42,7 +42,7 @@
       "schema": "./class/schema.json"
     },
     "interface": {
-      "description": "Creates a new, generic class definition in the given or default project.",
+      "description": "Creates a new, generic interface definition in the given or default project.",
       "factory": "./interface/",
       "schema": "./interface/schema.json"
     },

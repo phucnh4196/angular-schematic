@@ -39,11 +39,6 @@
       "default": false,
       "x-user-analytics": 12
     },
-    "flat": {
-      "type": "boolean",
-      "description": "When true (the default), creates the new files at the top level of the current project.",
-      "default": true
-    },
     "implements": {
       "type": "array",
       "description": "Specifies which route guards to implement.",

@@ -33,11 +33,6 @@
       },
       "x-prompt": "What name would you like to use for the route interceptor? (--name)"
     },
-    "flat": {
-      "type": "boolean",
-      "default": true,
-      "description": "When true (the default), creates files at the top level of the project."
-    },
     "skipTests": {
       "type": "boolean",
       "description": "Do not create \"spec.ts\" test files for the new interceptor.",

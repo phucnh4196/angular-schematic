@@ -95,11 +95,6 @@
       ],
       "x-user-analytics": 5
     },
-    "type": {
-      "type": "string",
-      "description": "Adds a developer-defined type to the filename, in the format \"name.type.ts\".",
-      "default": "Component"
-    },
     "skipTests": {
       "type": "boolean",
       "description": "Do not create \"spec.ts\" test files for the new component.",
