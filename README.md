@@ -481,3 +481,19 @@ ng g @vts-kit/ng-schematics:resolver [--options=value]
 | 5   | skipTests | Do not generate \"spec.ts\" test files.                                                                                                | boolean |         | false   |
 
 ## References
+
+* https://dev.to/this-is-angular/emulating-tree-shakable-components-using-single-component-angular-modules-13do
+* https://dev.to/this-is-angular/angular-revisited-tree-shakable-components-and-optional-ngmodules-36d2
+
+
+## Contribute Guidelines
+
+If you have any ideas, just open an issue and tell us what you think.
+
+If you'd like to contribute, please refer [Contributors Guide](CONTRIBUTING.md)
+
+## License
+
+This code is under the [MIT License](https://opensource.org/licenses/MIT).
+
+See the [LICENSE](LICENSE) file for required notices and attributions.
