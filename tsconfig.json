@@ -24,6 +24,7 @@
     "paths": {
       "@root/*": ["../*"]
     },
+    "outDir": "lib"
   },
   "include": ["src/**/*"],
   "exclude": ["src/*/files/**/*", "src/template/**/*"]
