@@ -154,7 +154,7 @@ ng new -c @vts-kit/ng-schematics
 | 10 | routing           | Generate a routing module for the initial project.                                                                                                                                                                            | boolean                             |         |         |
 | 11 | prefix            | The prefix to apply to generated selectors for the initial project.                                                                                                                                                           | string                              |         | app     |
 | 12 | style             | The file extension or preprocessor to use for style files.                                                                                                                                                                    | ["css", "scss", "sass", "less"]     |         |         |
-| 13 | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                                                                                                   | boolean                             |         |         |
+| 13 | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                                                                                                   | boolean                             |         |    false     |
 | 14 | minimal           | Create a workspace without any testing frameworks.                                                                                                                                                                            | boolean                             |         |         |
 | 15 | strict            | Creates a workspace with stricter type checking and stricter bundle budgets settings. This setting helps improve maintainability and catch bugs ahead of time. For more information, see https://angular.io/guide/strict-mode | boolean                             |         |         |
 | 16 | packageManager    | The package manager used to install dependencies.                                                                                                                                                                             | ["npm", "yarn", "pnpm", "cnpm"]     |         |         |
@@ -178,12 +178,164 @@ ng g @vts-kit/ng-schematics:project
 | 4  | viewEncapsulation | The view encapsulation strategy to use in the initial project.                                                                                                                                                                | ["Emulated", "None", "ShadowDom"] |         |         |
 | 5  | routing           | Generate a routing module for the initial project.                                                                                                                                                                            | boolean                           |         |         |
 | 6  | prefix            | The prefix to apply to generated selectors for the initial project.                                                                                                                                                           | string                            |         | app     |
-| 7  | style             | The file extension or preprocessor to use for style files.                                                                                                                                                                    | ["css", "scss", "sass", "less"]   |         |         |
-| 8  | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                                                                                                   | boolean                           |         |         |
+| 7  | style             | The file extension or preprocessor to use for style files.                                                                                                                                                                    | ["css", "scss", "sass", "less"]   |         |    Same as initial choice     |
+| 8  | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                                                                                                   | boolean                           |         |   false      |
 | 9  | skipPackageJson   | Do not add dependencies to the \"package.json\" file.                                                                                                                                                                         | boolean                           |         |         |
 | 10 | minimal           | Create a workspace without any testing frameworks.                                                                                                                                                                            | boolean                           |         |         |
 | 11 | skipInstall       | Do not install dependency packages.                                                                                                                                                                                           | boolean                           |         | false   |
 | 12 | strict            | Creates a workspace with stricter type checking and stricter bundle budgets settings. This setting helps improve maintainability and catch bugs ahead of time. For more information, see https://angular.io/guide/strict-mode | boolean                           |         |         |
+
+## Schematic: feature-group
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:feature-group [--options=value]
+```
+
+#### Options
+
+| No | Name              | Description                                                                                                                                         | Type                              | Require | Default |
+|----|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|---------|---------|
+| 1  | project           | The name of the project.                                                                                                                            | string                            |         |         |
+| 2  | name              | The name of the new feature group.                                                                                                                  | string                            | ✔       |         |
+| 3  | feature           | The name of first-created feature to be lazy-loaded.                                                                                                | string                            | ✔       |         |
+| 4  | displayBlock      | Specifies if the style will contain `:host { display: block; }`.                                                                                    | boolean                           |         |         |
+| 5  | inlineStyle       | Include styles inline in the component TS file. By default, an external styles file is created and referenced in the component TypeScript file.     | boolean                           |         |         |
+| 6  | inlineTemplate    | Include template inline in the component TS file. By default, an external template file is created and referenced in the component TypeScript file. | boolean                           |         |         |
+| 7  | viewEncapsulation | The view encapsulation strategy to use in the initial project.                                                                                      | ["Emulated", "None", "ShadowDom"] |         |         |
+| 8  | changeDetection   | The change detection strategy to use in the new component.                                                                                          | ["Default", "OnPush"]             |         | Default |
+| 9  | prefix            | The prefix to apply to generated selectors for the initial project.                                                                                 | string                            |         | app     |
+| 10 | style             | The file extension or preprocessor to use for style files.                                                                                          | ["css", "scss", "sass", "less"]   |         |    Same as initial choice     |
+| 11 | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                         | boolean                           |         | false   |
+| 12 | selector          | The HTML selector to use for this component.                                                                                                        | string                            |         |         |
+| 13 | skipSelector      | Specifies if the component should have a selector or not.                                                                                           | boolean                           |         | false   |
+| 14 | routing           | Generate routing for feature.                                                                                                                       | boolean                           |         | true    |
+
+## Schematic: module
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:module [--options=value]
+```
+
+#### Options
+
+| No | Name              | Description                                                                                                                                                                                                                   | Type                                | Require | Default |
+|----|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|---------|---------|
+| 1  | project              | The name of the project.                                                                                                                                                                                                | string                              |        |         |
+| 2  | shared | Specifies whether to create NgModule in shared directory (libs/shared).                                                                     | boolean |        |   false      |
+| 3  | path | The path at which to create the NgModule, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder).                                                                     | boolean |    ✔     |   
+| 4  | name | The name of the NgModule.                                                                     | string |    ✔     |        
+| 5  | exportClassName | Custom name of the NgModule.                                                                     | string |         |      
+| 6  | routing | Create a routing module.                                                                     | boolean |         |    false
+| 7  | routingScope | The scope for the new routing module.                                                                    | ["Child", "Root"] |         |    Child
+| 8  | route | The route path for a lazy-loaded module. When supplied, creates a component in the new module, and adds the route to that component in the `Routes` array declared in the module provided in the `--module` option.                                                                   | string |         |    
+| 9  | commonModule| The new NgModule imports \"CommonModule\".                                                                   | boolean |         |    true
+| 10  | module | The declaring NgModule which import new created module.                                                                  | string |         |    
+
+## Schematic: component
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:component [--options=value]
+```
+
+#### Options
+
+| No | Name              | Description                                                                                                                                                                     | Type                              | Require | Default                |
+|----|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|---------|------------------------|
+| 1  | project           | The name of the project.                                                                                                                                                        | string                            |         |                        |
+| 2  | shared            | Specifies whether to create component in shared directory (libs/shared).                                                                                                         | boolean                           |         | false                  |
+| 3  | path              | The path at which to create the component, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder).                                          | boolean                           | ✔       |                        |
+| 4  | name              | The name of the NgModule.                                                                                                                                                       | string                            | ✔       |                        |
+| 5  | displayBlock      | Specifies if the style will contain `:host { display: block; }`.                                                                                                                | boolean                           |         | false                  |
+| 6  | inlineStyle       | Include styles inline in the component.ts file. Only CSS styles can be included inline. By default, an external styles file is created and referenced in the component.ts file. | boolean                           |         | false                  |
+| 7  | inlineTemplate    | Include template inline in the component.ts file. By default, an external template file is created and referenced in the component.ts file.                                     | boolean                           |         | false                  |
+| 8  | viewEncapsulation | The view encapsulation strategy to use in the new component.                                                                                                                    | ["Emulated", "None", "ShadowDom"] |         |                        |
+| 9  | changeDetection   | The change detection strategy to use in the new component.                                                                                                                      | ["Default", "OnPush"]             |         | Default                |
+| 10 | prefix            | The prefix to apply to generated selectors for the initial project.                                                                                                             | string                            |         | app                    |
+| 11 | style             | The file extension or preprocessor to use for style files.                                                                                                                      | ["css", "scss", "sass", "less"]   |         | Same as initial choice |
+| 12 | skipTests         | Do not generate \"spec.ts\" test files for the new project.                                                                                                                     | boolean                           |         | false                  |
+| 13 | selector          | The HTML selector to use for this component.                                                                                                                                    | string                            |         |                        |
+| 14 | skipSelector      | Specifies if the component should have a selector or not.                                                                                                                       | boolean                           |         | false                  |
+## Schematic: directive
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:directive [--options=value]
+```
+
+#### Options
+
+| No | Name      | Description                                                                                                                             | Type    | Require | Default |       |
+|----|-----------|-----------------------------------------------------------------------------------------------------------------------------------------|---------|---------|---------|-------|
+| 1  | project   | The name of the project.                                                                                                                | string  |         |         |       |
+| 2  | shared    | Specifies whether to create directive in shared directory (libs/shared).                                                                | boolean |         | false   |       |
+| 3  | path      | The path at which to create the directive, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder). | boolean | ✔       |         |       |
+| 4  | name      | The name of the directive.                                                                                                              | string  | ✔       |         |       |
+| 5  | prefix    | The prefix to apply to generated selectors for the initial project.                                                                     | string  |         | app     |       |
+| 6  | skipTests | Do not generate \"spec.ts\" test files for the new project.                                                                             | boolean |         | false   |       |
+| 7  | selector  | The HTML selector to use for this component.                                                                                            | string  |         |         | false |
+
+## Schematic: pipe
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:pipe [--options=value]
+```
+
+#### Options
+
+| No | Name      | Description                                                                                                                            | Type    | Require | Default |
+|----|-----------|----------------------------------------------------------------------------------------------------------------------------------------|---------|---------|---------|
+| 1  | project   | The name of the project.                                                                                                               | string  |         |         |
+| 2  | shared    | Specifies whether to create pipe in shared directory (libs/shared).                                                                | boolean |         | false   |
+| 3  | path      | The path at which to create the pipe, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder). | boolean | ✔       |         |
+| 4  | name      | The name of the pipe.                                                                                                              | string  | ✔       |         |
+| 5  | prefix    | The prefix to apply to generated selectors for the initial project.                                                                    | string  |         | app     |
+| 6  | skipTests | Do not generate \"spec.ts\" test files for the new project.                                                                            | boolean |         | false   |
+
+## Schematic: service
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:service [--options=value]
+```
+
+#### Options
+
+| No | Name      | Description                                                                                                                            | Type    | Require | Default |
+|----|-----------|----------------------------------------------------------------------------------------------------------------------------------------|---------|---------|---------|
+| 1  | project   | The name of the project.                                                                                                               | string  |         |         |
+| 2  | shared    | Specifies whether to create service in shared directory (libs/shared).                                                                | boolean |         | false   |
+| 3  | path      | The path at which to create the service, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder). | boolean | ✔       |         |
+| 4  | name      | The name of the service.                                                                                                              | string  | ✔       |         |
+| 5  | skipTests | Do not generate \"spec.ts\" test files for the new project.                                                                            | boolean |         | false   |
+
+## Schematic: class
+
+#### Command
+
+```
+ng g @vts-kit/ng-schematics:class [--options=value]
+```
+
+#### Options
+
+| No | Name      | Description                                                                                                                            | Type    | Require | Default |
+|----|-----------|----------------------------------------------------------------------------------------------------------------------------------------|---------|---------|---------|
+| 1  | project   | The name of the project.                                                                                                               | string  |         |         |
+| 2  | shared    | Specifies whether to create class in shared directory (libs/shared).                                                                | boolean |         | false   |
+| 3  | path      | The path at which to create the class, relative to 'libs' folder (if --shared is setted, path will be relative to 'shared' folder). | boolean | ✔       |         |
+| 4  | name      | The name of the class.                                                                                                              | string  | ✔       |         |
+| 5  | skipTests | Do not generate \"spec.ts\" test files for the new project.                                                                            | boolean |         | false   |
+| 6  | type  | Adds a developer-defined type to the filename, in the format \"name.type.ts\".                                                                            | string |         |   |
 
 
 ## References
